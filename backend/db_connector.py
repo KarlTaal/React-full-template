@@ -31,3 +31,34 @@ def get_data():
     cur.close()
     con.close()
     return data
+
+
+def get_user(ident):
+    con = psycopg2.connect(
+        host="DESKTOP-N820N2N",
+        database="imagedb",
+        user="postgres",
+        password=os.getenv("POSTGRES_PASS"),
+        port=5432
+    )
+    cur = con.cursor()
+    cur.execute(f"select * from accounts where email='{ident}'")
+    data = cur.fetchall()
+    cur.close()
+    con.close()
+    return data
+
+
+def create_user(email, passw):
+    con = psycopg2.connect(
+        host="DESKTOP-N820N2N",
+        database="imagedb",
+        user="postgres",
+        password=os.getenv("POSTGRES_PASS"),
+        port=5432
+    )
+    cur = con.cursor()
+    cur.execute("insert into accounts (email, password) values ('{0}', '{1}')".format(email, passw))
+    con.commit()
+    cur.close()
+    con.close()

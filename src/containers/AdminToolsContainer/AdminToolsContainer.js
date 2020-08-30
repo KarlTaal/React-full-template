@@ -13,24 +13,24 @@ const AdminToolsContainer = () =>{
             url: 'http://127.0.0.1:5000/post',
             data: {"value":postTxt}
         })
-            .then(function (response) {
+            .then(response=> {
                 //handle success
                 console.log(response);
             })
-            .catch(function (response) {
+            .catch(error=> {
                 //handle error
-                console.log(response);
+                console.log(error);
             });
     };
 
     const viewClickHandler = () => {
         axios.get('http://127.0.0.1:5000/getAll')
-            .then(function (response) {
+            .then(response => {
                  let responseTXT = "";
                  response.data.rows.forEach(row => responseTXT += row + "\n");
                  setTxtAreaValue(responseTXT);
             })
-            .catch(function (error) {
+            .catch(error=>{
                 console.log(error);
             });
     };
