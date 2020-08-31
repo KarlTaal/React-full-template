@@ -1,22 +1,28 @@
 import React, {useState} from 'react';
 import './LoginContainer.css';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
-const LoginContainer = () =>{
+const LoginContainer = (props) => {
     const [errorMsg, setErrorMsg] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
 
-    
-    const loginClickHandler = ()=> {
+
+    const loginClickHandler = () => {
         axios({
             method: 'post',
             url: 'http://127.0.0.1:5000/login',
-            data: {"email":email, "password":password},
+            data: {"email": email, "password": password},
         })
             .then(response => {
                 //handle success
-                setErrorMsg(response.data);
+                //console.log(response.data);
+                setErrorMsg("Logged in");
+                localStorage.setItem('usertoken', response.data['access_token']);
+                props.setIsAuthorized(true);
+                history.push('/admin');
             })
             .catch(error => {
                 //handle error
@@ -51,10 +57,10 @@ const LoginContainer = () =>{
             onChange={inputChangeHandler}
         />
 
-        <button onClick={loginClickHandler} className={"login-container-item"} >Login</button>
+        <button onClick={loginClickHandler} className={"login-container-item"}>Login</button>
         <div className={"login-container-item"}>{errorMsg}</div>
     </div>
 };
 
-export default  LoginContainer;
+export default LoginContainer;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import AdminToolsContainer from "./containers/AdminToolsContainer/AdminToolsContainer";
 import {BrowserRouter, Route} from 'react-router-dom';
@@ -8,19 +8,40 @@ import RegisterContainer from "./containers/RegisterContainer/RegisterContainer"
 
 
 const App = () => {
-    return (
-        <BrowserRouter className="App">
-            <Route path="/" exact render={() => <HomePageContainer/>}/>
+    const [isAuthorized, setIsAuthorized] = useState(false);
 
-            <Route path="/login" exact render={() =>
-                <LoginContainer/>}
+    return (
+
+        <BrowserRouter className="App">
+            <Route path="/" exact render={() =>
+                <HomePageContainer
+                    isAuthorized={isAuthorized}
+                    setIsAuthorized={setIsAuthorized}
+                />}
             />
 
-            <Route path="/register" exact render={() => <RegisterContainer/>}/>
+            <Route path="/login" exact render={() =>
+                <LoginContainer
+                    isAuthorized={isAuthorized}
+                    setIsAuthorized={setIsAuthorized}
+                />}
+            />
 
-            <Route path="/admin" exact render={() => <AdminToolsContainer/>}/>
+            <Route path="/register" exact render={() =>
+                <RegisterContainer
+                    isAuthorized={isAuthorized}
+                    setIsAuthorized={setIsAuthorized}
+                />}
+            />
+
+            <Route path="/admin" exact render={() =>
+                <AdminToolsContainer
+                    isAuthorized={isAuthorized}
+                    setIsAuthorized={setIsAuthorized}
+                />}
+            />
         </BrowserRouter>
     );
-}
+};
 
 export default App;
