@@ -12,7 +12,16 @@ Requirements file is in the backend folder. To install requirements run ```pip i
 
 ## Database structure description that is used in this project   
 ### Tables   
+Database consists of two tables where in one of them we keep the information about accounts and in another we keep information about objects in the database. Both tables have primary key created with serial.   
 ![Screenshot](DBscreenshots/DBtables.PNG)   
+ 
+### Images  
+Table name can be confusing because the table does not consist of images. In the table there is a single column where we just keep description of the object.  
+![Screenshot](DBscreenshots/DBimages.PNG)     
+
+### Accounts   
+In this table we keep all the registered accounts.   
+![Screenshot](DBscreenshots/DBaccounts.PNG)   
 
          
 Author: Karl Taal
