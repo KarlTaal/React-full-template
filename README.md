@@ -12,7 +12,7 @@ Requirements file is in the backend folder. To install requirements run ```pip i
 
 ## Database structure description that is used in this project   
 ### Tables   
-![Screenshot](DBscreenshots/DBtables.png)   
+![Screenshot](DBscreenshots/DBtables.PNG)   
 
          
 Author: Karl Taal
