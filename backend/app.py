@@ -1,11 +1,8 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from db_connector import get_data, post_data, get_user, create_user
 from flask_cors import CORS
-from flask import request
 from hashutils import make_pw_hash, check_pw_hash
-from flask import jsonify
-from flask_jwt_extended import JWTManager, create_access_token
-from flask_jwt_extended import get_raw_jwt, jwt_required
+from flask_jwt_extended import JWTManager, create_access_token, get_raw_jwt, jwt_required
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
