@@ -1,6 +1,7 @@
 import psycopg2
 import os
 
+#Database password is stored in windows environment variables.
 
 def post_data(value):
     con = psycopg2.connect(
