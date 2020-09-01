@@ -7,8 +7,12 @@ Back-end: **Flask**
 Database: **PostgreSQL**    
 Authentication: **JWT Token based**    
 
-### Python env    
+## Python env    
 Requirements file is in the backend folder. To install requirements run ```pip install -r requirements.txt```.
+
+## Database structure description that is used in this project   
+### Tables   
+![Screenshot](DBscreenshots/DBtables.png)   
 
          
 Author: Karl Taal
