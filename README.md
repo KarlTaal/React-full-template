@@ -5,7 +5,10 @@ The database is not included. Will need to create it manually beforehand.
 Front-end: **ReactJS**    
 Back-end: **Flask**    
 Database: **PostgreSQL**    
-Authentication: **JWT Token based**     
+Authentication: **JWT Token based**    
+
+### Python env    
+Requirements file is in the backend folder. To install requirements run ```pip install -r requirements.txt```.
 
          
 Author: Karl Taal
