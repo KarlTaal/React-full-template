@@ -13,6 +13,7 @@ const AdminToolsContainer = (props) => {
     const logoutHandler = () => {
         history.push('/');
         props.setIsAuthorized(false);
+        localStorage.removeItem('identity');
         axios.get('http://127.0.0.1:5000/logout',
             {
                 headers: {"Authorization": `Bearer ${localStorage.getItem('usertoken')}`}
@@ -49,8 +50,8 @@ const AdminToolsContainer = (props) => {
                 headers: {"Authorization": `Bearer ${localStorage.getItem('usertoken')}`}
             })
             .then(response => {
-                let responseTXT = "";
-                response.data.rows.forEach(row => responseTXT += row + "\n");
+                let responseTXT = "Id\t\tDescription\n\n";
+                response.data.rows.forEach(row => responseTXT += row[0] + "\t\t" + row[1] + "\n");
                 setTxtAreaValue(responseTXT);
             })
             .catch(error => {
@@ -74,9 +75,11 @@ const AdminToolsContainer = (props) => {
                                     display: "flex",
                                     width: "100%",
                                     justifyContent: "center",
-                                    gap: "50px"
+                                    gap: "50px",
+                                    height:"20%",
+                                    alignItems:"center"
                                 }}>
-                                    <div>Logged in</div>
+                                    <div>{`Logged in as ${localStorage.getItem('identity')}`}</div>
                                     <button onClick={logoutHandler}>Logout</button>
                                 </div>
                                 :
@@ -84,9 +87,11 @@ const AdminToolsContainer = (props) => {
                                     position: "absolute",
                                     display: "flex",
                                     width: "100%",
-                                    justifyContent: "center"
+                                    justifyContent: "center",
+                                    height:"20%",
+                                    alignItems:"center"
                                 }}
-                                >Logged out</div>
+                                ><div>Logged out</div></div>
                         }
                         <div id={"admin-tools-header-container"}>
                             Administrator page
@@ -114,8 +119,7 @@ const AdminToolsContainer = (props) => {
                         <div>You have to be logged in</div>
                         <button onClick={() => {
                             history.push('/')
-                        }}>Back
-                        </button>
+                        }}>Back to home</button>
                     </div>
             }
         </>

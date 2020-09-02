@@ -12,7 +12,9 @@ def post_data(value):
         port=5432
     )
     cur = con.cursor()
-    cur.execute("insert into images (description) values ('{0}')".format(str(value)))
+    # TODO this should be protected against sql injection but not sure,
+    #  it was quick copy paste from one article. Take a closer look if it's valid.
+    cur.execute("insert into images (description) values (%s);", (value,))
     con.commit()
     cur.close()
     con.close()

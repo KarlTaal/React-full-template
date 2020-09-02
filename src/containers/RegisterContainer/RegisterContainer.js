@@ -15,6 +15,17 @@ const RegisterContainer = (props) => {
     const logoutHandler = () => {
         history.push('/');
         props.setIsAuthorized(false);
+        localStorage.removeItem('identity');
+        axios.get('http://127.0.0.1:5000/logout',
+            {
+                headers: {"Authorization": `Bearer ${localStorage.getItem('usertoken')}`}
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     const registerClickHandler = () => {
@@ -54,13 +65,27 @@ const RegisterContainer = (props) => {
         <>
             {
                 props.isAuthorized ?
-                    <div style={{position: "absolute", display: "flex", width: "100%", justifyContent: "center"}}>
+                    <div style={{
+                        position: "absolute",
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "center",
+                        height:"20%",
+                        alignItems:"center"
+                    }}>
                         <div>Logged in</div>
                         <button onClick={logoutHandler}>Logout</button>
                     </div>
                     :
-                    <div style={{position: "absolute", display: "flex", width: "100%", justifyContent: "center"}}
-                    >Logged out</div>
+                    <div style={{
+                        position: "absolute",
+                        display: "flex",
+                        width: "100%",
+                        justifyContent: "center",
+                        height:"20%",
+                        alignItems:"center"
+                    }}
+                    ><div>Logged out</div></div>
             }
             <div id={"register-container"}>
                 <input
@@ -88,8 +113,7 @@ const RegisterContainer = (props) => {
                     onClick={() => {
                         history.push('/');
                     }}
-                >Back to home
-                </button>
+                >Back to home</button>
 
                 <div className={"register-container-item"}>{errorMsg}</div>
 

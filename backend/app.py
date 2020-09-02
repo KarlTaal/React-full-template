@@ -65,7 +65,7 @@ def login():
         if len(user) == 1 and check_pw_hash(password, user[0][2]):
             # Token expires in time, ~15mins
             access_token = create_access_token(identity={'email': user[0][1], 'password': user[0][2]})
-            return jsonify(access_token=access_token), 200
+            return jsonify(access_token=access_token, ident=email), 200
         else:
             if len(user) == 0:
                 return "No such account", 401

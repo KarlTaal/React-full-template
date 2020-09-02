@@ -21,6 +21,7 @@ const LoginContainer = (props) => {
                 //console.log(response.data);
                 setErrorMsg("Logged in");
                 localStorage.setItem('usertoken', response.data['access_token']);
+                localStorage.setItem('identity', response.data['ident']);
                 props.setIsAuthorized(true);
                 history.push('/admin');
             })
@@ -58,6 +59,12 @@ const LoginContainer = (props) => {
         />
 
         <button onClick={loginClickHandler} className={"login-container-item"}>Login</button>
+        <button
+            className={"login-container-item"}
+            onClick={() => {
+                history.push('/');
+            }}
+        >Back to home</button>
         <div className={"login-container-item"}>{errorMsg}</div>
     </div>
 };
