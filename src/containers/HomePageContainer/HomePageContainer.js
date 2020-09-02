@@ -38,10 +38,18 @@ const HomePageContainer = (props) => {
                         <div>Logged out</div></div>
             }
             <div id={"home-page-container"}>
-                <Link to={"/login"}>Login</Link>
-                <Link to={"/register"}>Register</Link>
-                <Link to={"/admin"}>Admin</Link>
+                <div id={"home-page-links"}>
+                    <Link to={"/login"}>Login</Link>
+                    <Link to={"/register"}>Register</Link>
+                    <Link to={"/admin"}>Admin</Link>
+                </div>
+                <div id={"home-page-information"}>
+                    <p>&ordm; If You have an account, then You can login in th login page.</p>
+                    <p>&ordm; If You don't have an account, then you can register an account in the register page.</p>
+                    <p>&ordm; In admin page you can view the content of database and add values to the database. Logging in is required.</p>
+                </div>
             </div>
+
         </>
     )
 };
