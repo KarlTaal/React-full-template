@@ -6,7 +6,7 @@ from flask_jwt_extended import JWTManager, create_access_token, get_raw_jwt, jwt
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['JWT_SECRET_KEY'] = 'secret' #change this to something else
+app.config['JWT_SECRET_KEY'] = 'secret' #change this to something else. It's part of the JWT and adds security to the token.
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
